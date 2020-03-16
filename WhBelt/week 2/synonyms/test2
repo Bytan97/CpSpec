@@ -1,0 +1,10 @@
+10
+ADD code 1
+ADD q 1
+ADD 1 q
+COUNT 1
+COUNT code
+COUNT q
+CHECK 1 code
+CHECK 1 0 
+CHECK 1 q
