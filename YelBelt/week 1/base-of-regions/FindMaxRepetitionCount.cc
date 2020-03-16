@@ -1,4 +1,4 @@
-#include <algorithm>
+// #include <algorithm>
 #include <iostream>
 #include <map>
 #include <tuple>
@@ -20,16 +20,20 @@ auto Calc(const Region &r) {
 bool operator==(const Region &lhs, const Region &rhs) {
   return Calc(lhs) == Calc(rhs);
 }
+bool operator<(const Region &lhs, const Region &rhs) {
+  return Calc(lhs) < Calc(rhs);
+}
 
 int FindMaxRepetitionCount(const std::vector<Region> &regions) {
   if (regions.size() == 0) {
     return 0;
   }
+  std::map<Region, int> r;
   int max_rep = 1;
   for (const auto &reg : regions) {
-    int temp = std::count(regions.begin(), regions.end(), reg);
-    if (temp > max_rep) {
-      max_rep = temp;
+    ++r[reg];
+    if (r[reg] > max_rep) {
+      max_rep = r[reg];
     }
   }
   return max_rep;
@@ -40,8 +44,8 @@ int main() {
       << FindMaxRepetitionCount({
              {"Moscow",
               "Russia",
-              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT, "Mosca"}},
-              89},
+              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT,
+              "Mosca"}}, 89},
              {"Russia",
               "Eurasia",
               {{Lang::DE, "Russland"},
@@ -50,12 +54,12 @@ int main() {
               89},
              {"Moscow",
               "Russia",
-              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT, "Mosca"}},
-              89},
+              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT,
+              "Mosca"}}, 89},
              {"Moscow",
               "Russia",
-              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT, "Mosca"}},
-              89},
+              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT,
+              "Mosca"}}, 89},
              {"Russia",
               "Eurasia",
               {{Lang::DE, "Russland"},
@@ -69,8 +73,8 @@ int main() {
       << FindMaxRepetitionCount({
              {"Moscow",
               "Russia",
-              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT, "Mosca"}},
-              89},
+              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT,
+              "Mosca"}}, 89},
              {"Russia",
               "Eurasia",
               {{Lang::DE, "Russland"},
@@ -85,12 +89,12 @@ int main() {
               89},
              {"Moscow",
               "Toulouse",
-              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT, "Mosca"}},
-              89},
+              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT,
+              "Mosca"}}, 89},
              {"Moscow",
               "Russia",
-              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT, "Mosca"}},
-              31},
+              {{Lang::DE, "Moskau"}, {Lang::FR, "Moscou"}, {Lang::IT,
+              "Mosca"}}, 31},
          })
       << std::endl;
 
