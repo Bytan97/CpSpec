@@ -9,6 +9,7 @@
                 "-Wall",
                 "-pedantic-errors",
                 "-std=c++17",
+                "-Werror",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
