@@ -1,0 +1,4 @@
+3
+NEW_BUS 1 5 q w e r t
+STOPS_FOR_BUS 2
+ALL_BUSES

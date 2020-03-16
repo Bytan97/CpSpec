@@ -1,0 +1,5 @@
+24
+NEW_BUS 1 5 a b c d i 
+NEW_BUS 2 1 t 
+NEW_BUS 3 6 a b c d i f
+STOPS_FOR_BUS 2

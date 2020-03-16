@@ -1,0 +1,22 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe build active file",
+            "command": "C:\\Users\\ENBSF\\Documents\\DEV\\MinGW\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-Wall",
+                "-pedantic-errors",
+                "-std=c++17",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:\\Users\\ENBSF\\Documents\\DEV\\MinGW\\mingw64\\bin"
+            }
+        }
+    ],
+    "version": "2.0.0"
+}

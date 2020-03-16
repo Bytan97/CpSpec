@@ -1,0 +1,7 @@
+6
+ADD a b
+ADD c d
+ADD d a
+ADD d c
+ADD b d
+COUNT d
