@@ -1,0 +1,41 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe build active file",
+            "command": "C:\\Users\\ENBSF\\Documents\\DEV\\MinGW\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-Wall",
+                "-pedantic-errors",
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-Wctor-dtor-privacy",
+                "-Wold-style-cast",
+                "-Wsign-promo",
+                "-Wduplicated-branches",
+                "-Wduplicated-cond",
+                "-Wfloat-equal",
+                "-Wshadow=compatible-local",
+                "-Wcast-qual",
+                "-Wconversion",
+                "-Wsign-conversion",
+                "-Wlogical-op",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:\\Users\\ENBSF\\Documents\\DEV\\MinGW\\mingw64\\bin"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Run",
+            "command": "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        }
+    ],
+    "version": "2.0.0"
+}
