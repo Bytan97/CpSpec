@@ -36,14 +36,19 @@ class TeamTasks {
       return {{}, {}};
     }
     TasksInfo Updated, Untouched, current_person = person_to_task[person];
+    if (task_count < current_person[TaskStatus::NEW] + current_person[TaskStatus::TESTING]
+        + current_person[TaskStatus::IN_PROGRESS]) {
+      task_count = current_person[TaskStatus::NEW] + current_person[TaskStatus::TESTING]
+          + current_person[TaskStatus::IN_PROGRESS];
+    }
     for (int intStatus = static_cast<int>(TaskStatus::NEW); intStatus != static_cast<int>(TaskStatus::DONE);
          ++intStatus) {
-      int current_task_counts = current_person[static_cast<TaskStatus>(intStatus)];
+      int current_task_counts = person_to_task[person][static_cast<TaskStatus>(intStatus)];
       if (task_count == 0) {
         break;
       }
       if (current_task_counts < task_count) {
-        current_person.erase(static_cast<TaskStatus>(intStatus));
+        current_person[static_cast<TaskStatus>(intStatus)] -= current_task_counts;
         current_person[static_cast<TaskStatus>(intStatus + 1)] += current_task_counts;
         Updated[static_cast<TaskStatus>(intStatus + 1)] = current_task_counts;
         task_count -= current_task_counts;
@@ -102,6 +107,7 @@ int main() {
   tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 10); // 1
   tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 10); // 1
   tasks.AddNewTask("Lisa");                                                                    // 1
+
   tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 2);
 
   return 0;
