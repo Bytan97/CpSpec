@@ -36,18 +36,20 @@ class TeamTasks {
       return {{}, {}};
     }
     TasksInfo Updated, Untouched, current_person = person_to_task[person];
-    if (task_count < current_person[TaskStatus::NEW] + current_person[TaskStatus::TESTING]
+    if (task_count > current_person[TaskStatus::NEW] + current_person[TaskStatus::TESTING]
         + current_person[TaskStatus::IN_PROGRESS]) {
       task_count = current_person[TaskStatus::NEW] + current_person[TaskStatus::TESTING]
           + current_person[TaskStatus::IN_PROGRESS];
     }
+    
     for (int intStatus = static_cast<int>(TaskStatus::NEW); intStatus != static_cast<int>(TaskStatus::DONE);
          ++intStatus) {
       int current_task_counts = person_to_task[person][static_cast<TaskStatus>(intStatus)];
-      if (task_count == 0) {
+      int available = current_person[static_cast<TaskStatus>(intStatus)];
+      if (task_count <= 0) {
         break;
       }
-      if (current_task_counts < task_count) {
+      if (current_task_counts <= task_count) {
         current_person[static_cast<TaskStatus>(intStatus)] -= current_task_counts;
         current_person[static_cast<TaskStatus>(intStatus + 1)] += current_task_counts;
         Updated[static_cast<TaskStatus>(intStatus + 1)] = current_task_counts;
@@ -59,6 +61,7 @@ class TeamTasks {
         task_count = 0;
       }
     }
+
     for (int intStatus = static_cast<int>(TaskStatus::NEW); intStatus != static_cast<int>(TaskStatus::DONE);
          ++intStatus) {
       Untouched[static_cast<TaskStatus>(intStatus)] =
@@ -82,6 +85,7 @@ class TeamTasks {
     if (Updated[TaskStatus::DONE] == 0) {
       Updated.erase(TaskStatus::DONE);
     }
+
     person_to_task[person] = current_person;
 
     return {Updated, Untouched};
@@ -92,23 +96,21 @@ int main() {
   TeamTasks tasks;
   TasksInfo updated_tasks;
   TasksInfo untouched_tasks;
-  for (auto i = 0; i < 5; ++i) {
-    tasks.AddNewTask("Lisa");
-  }
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 5); // 1
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 5); // 1
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 1); // 1
-  for (auto i = 0; i < 5; ++i) {
-    tasks.AddNewTask("Lisa");
-  }
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 2); // 1
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 4); // 1
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 5); // 1
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 10); // 1
-  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 10); // 1
-  tasks.AddNewTask("Lisa");                                                                    // 1
+
+  tasks.AddNewTask("Lisa");
+
+  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 1);
+
+  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 1);
+
+  tasks.AddNewTask("Lisa");
+  tasks.AddNewTask("Lisa");
 
   tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 2);
+
+  tasks.AddNewTask("Lisa");
+
+  tie(updated_tasks, untouched_tasks) = tasks.PerformPersonTasks("Lisa", 4);
 
   return 0;
 }
