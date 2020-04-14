@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <set>
+#include <vector>
 
 using namespace std;
 
@@ -73,6 +74,8 @@ class TestRunner {
     } catch (runtime_error &e) {
       ++fail_count;
       cerr << test_name << " fail: " << e.what() << endl;
+    }  catch (invalid_argument & arg){
+      cerr << test_name << " fail: " << arg.what() << endl;
     }
   }
 
