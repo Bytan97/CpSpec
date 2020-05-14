@@ -1,0 +1,41 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/ENBSF/DEV/Courcera/CpSpec/TestRunner/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "gcc-x64",
+            "compilerArgs": [
+                "-Werror",
+                "-pedantic-errors",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-Wcast-align",
+                "-Wcast-qual",
+                "-Wconversion",
+                "-Wctor-dtor-privacy",
+                "-Wduplicated-branches",
+                "-Wduplicated-cond",
+                "-Wextra-semi",
+                "-Wfloat-equal",
+                "-Wlogical-op",
+                "-Wnon-virtual-dtor",
+                "-Wold-style-cast",
+                "-Woverloaded-virtual",
+                "-Wredundant-decls",
+                "-Wsign-conversion",
+                "-Wsign-promo"
+            ],
+            "compilerPath": "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/"
+        }
+    ],
+    "version": 4
+}

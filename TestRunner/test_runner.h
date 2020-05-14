@@ -44,7 +44,7 @@ ostream &operator<<(ostream &os, const vector<T> &v) {
       os << ", ";
     }
     first = false;
-    os << v;
+    os << kv;
   }
   return os << "}";
 }
