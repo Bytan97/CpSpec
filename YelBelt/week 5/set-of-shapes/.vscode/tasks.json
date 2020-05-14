@@ -1,0 +1,39 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe",
+            "command": "C:\\ProgramData\\chocolatey\\bin\\g++.exe",
+            "args": [
+                "-g",
+                // "-Werror",
+                "-pedantic-errors",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-Wcast-align",
+                "-Wcast-qual",
+                "-Wconversion",
+                "-Wctor-dtor-privacy",
+                "-Wduplicated-branches",
+                "-Wduplicated-cond",
+                "-Wextra-semi",
+                "-Wfloat-equal",
+                "-Wlogical-op",
+                "-Wnon-virtual-dtor",
+                "-Wold-style-cast",
+                "-Woverloaded-virtual",
+                "-Wredundant-decls",
+                "-Wsign-conversion",
+                "-Wsign-promo",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:\\ProgramData\\chocolatey\\bin"
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
